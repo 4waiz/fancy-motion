@@ -1,0 +1,9 @@
+{
+  "name": "fancy-motion",
+  "version": "1.0.0",
+  "author": "Awaiz Ahmed",
+  "renderer": "hyperframes@0.8.166",
+  "three": "0.186.1",
+  "fps": 60,
+  "builtOn": "/brag (HyperFrames workflow, Kokoro voice path, Kenney SFX library, ende.app music cues)"
+}

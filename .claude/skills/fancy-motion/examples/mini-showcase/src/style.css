@@ -1,0 +1,5 @@
+/* mini-showcase styles (tokens + fm components come from vendor/ and fm/) */
+.ex-title { font-family: var(--font-display); font-stretch: 68%; font-weight: 900; font-size: 132px; line-height: 1; color: var(--cream);
+  text-shadow: 1px 2px 0 #b95a3e, 2px 4px 0 #b95a3e, 3px 6px 0 #b95a3e, 4px 8px 0 #7e3a28, 0 20px 36px rgba(0, 0, 0, 0.5); }
+.ex-credit { margin-top: 34px; font-family: var(--font-body); font-weight: 700; font-size: 46px; color: var(--amber); }
+.ex-built { margin-top: 8px; font-family: var(--font-body); font-weight: 500; font-size: 36px; color: var(--cream-2); }

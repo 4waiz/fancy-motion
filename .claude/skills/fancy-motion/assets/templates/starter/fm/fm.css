@@ -1,0 +1,99 @@
+/* fm.css — /fancy-motion component styles. Requires tokens.css (palette + font variables).
+   Part of the /fancy-motion skill (author: Awaiz Ahmed). */
+/* Stacking, bottom to top: below (0, screens seen through the canvas hole) · world canvas (1) ·
+   mid (3, flat cards that front-facing media may cover) · media wrappers (0 under the canvas, 5 front)
+   · above (10, titles, captions, labels, callouts — always readable over media). */
+.fm-layer { position: absolute; inset: 0; pointer-events: none; }
+.fm-layer.below { z-index: 0; }
+.fm-world { position: absolute; inset: 0; width: 100%; height: 100%; display: block; z-index: 1; }
+.fm-layer.mid { z-index: 3; }
+.fm-layer.above { z-index: 10; }
+
+/* media wrappers (static in index.html; ctx.video() pins each to a quad and sets z-index).
+   They must be positioned: a static wrapper ignores z-index, paints under the canvas and stacks
+   below the previous one — every clip invisible. During render HyperFrames swaps each <video>
+   for an <img> sibling in the same wrapper, so both fill it. */
+.vwrap { position: absolute; left: 0; top: 0; overflow: hidden; pointer-events: none; }
+.vwrap > video, .vwrap > img { position: absolute; left: 0; top: 0; width: 100%; height: 100%; display: block; object-fit: fill; }
+
+/* kinetic titles */
+.fm-title { position: absolute; font-family: var(--font-display); text-transform: uppercase; line-height: 0.9;
+  letter-spacing: 0.005em; word-spacing: 0.12em; white-space: nowrap; color: var(--cream); will-change: transform; z-index: 30; }
+.fm-title .fm-word, .fm-title .fm-letter { display: inline-block; will-change: transform, opacity; transform-origin: 50% 80%; }
+
+/* subtitles: one consistent lower band */
+.fm-subs { position: absolute; left: 0; right: 0; display: flex; justify-content: center; z-index: 50; }
+.fm-subs-box { font-family: var(--font-body); font-weight: 600; font-size: 44px; line-height: 1.22; color: var(--cream);
+  background: rgba(16, 17, 20, 0.76); padding: 12px 28px 14px; border-radius: 16px; text-align: center; white-space: nowrap;
+  text-wrap: balance; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.28); }
+
+/* pixel wipe */
+.fm-wipe { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 60; }
+
+/* surfaces pinned to quads */
+.fm-surface { position: absolute; left: 0; top: 0; overflow: hidden; background: var(--ink); backface-visibility: hidden; }
+.fm-surface > video, .fm-surface > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* floating file (folded corner) */
+.fm-file { position: absolute; left: 0; top: 0; background: var(--cream); color: var(--ink); border-radius: 22px 0 22px 22px;
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.45); overflow: hidden; font-family: var(--font-mono);
+  clip-path: polygon(0 0, calc(100% - 92px) 0, 100% 92px, 100% 100%, 0 100%); }
+.fm-file-head { padding: 44px 56px 26px; border-bottom: 3px solid var(--cream-3); background: linear-gradient(var(--cream), var(--cream-2)); }
+.fm-file-title { font-family: var(--font-display); font-stretch: 68%; font-weight: 900; font-size: 72px; line-height: 1; letter-spacing: 0.005em; color: var(--ink); }
+.fm-file-meta { margin-top: 10px; font-family: var(--font-body); font-weight: 600; font-size: 26px; color: var(--terracotta-deep); }
+.fm-file-body { position: relative; padding: 26px 40px 30px 24px; }
+.fm-file-row { position: relative; z-index: 1; display: flex; gap: 22px; font-size: 29px; line-height: 1.5; white-space: pre; }
+.fm-file-row.key .fm-file-tx { color: var(--terracotta-deep); font-weight: 600; }
+.fm-file-row.dim .fm-file-tx { color: #6e665a; }
+.fm-file-row.head .fm-file-tx { font-family: var(--font-body); font-weight: 700; font-size: 32px; }
+.fm-file-ln { width: 40px; text-align: right; color: #a39a88; flex: none; }
+.fm-file-tx { color: var(--ink); }
+.fm-file-hl { position: absolute; left: 12px; right: 12px; background: rgba(243, 189, 89, 0.42); border-radius: 10px; transform-origin: 0 50%; display: none; z-index: 0; }
+.fm-file-fold { position: absolute; right: 0; top: 0; width: 92px; height: 92px;
+  background: linear-gradient(225deg, transparent 50%, var(--cream-3) 50%, #c9bc9f 100%); border-bottom-left-radius: 14px;
+  box-shadow: -6px 6px 14px rgba(0, 0, 0, 0.18); }
+
+/* code panel */
+.fm-code, .fm-term { position: absolute; left: 0; top: 0; background: var(--ink-2); border: 2px solid var(--line); border-radius: 24px;
+  overflow: hidden; box-shadow: 0 40px 90px rgba(0, 0, 0, 0.5); color: var(--cream-2); }
+.fm-code-head { display: flex; align-items: center; gap: 12px; height: 64px; padding: 0 26px; background: var(--ink-3); border-bottom: 2px solid var(--line); }
+.fm-dot { width: 16px; height: 16px; border-radius: 50%; display: inline-block; }
+.fm-dot.a { background: var(--terracotta); } .fm-dot.b { background: var(--amber); } .fm-dot.c { background: var(--teal); }
+.fm-code-file { margin-left: 14px; font-family: var(--font-mono); font-size: 24px; color: var(--cream-3); }
+.fm-code-body { position: relative; padding: 22px 0 22px 0; font-family: var(--font-mono); font-size: 28px; line-height: 1.55; font-variant-ligatures: none; font-feature-settings: "calt" 0, "liga" 0; }
+.fm-code-row { position: relative; z-index: 1; display: flex; white-space: pre; }
+.fm-code-ln { width: 86px; padding-right: 26px; text-align: right; color: #5d616b; flex: none; }
+.fm-code-tx { color: var(--cream-2); }
+.fm-code-tx .k { color: var(--amber); } .fm-code-tx .s { color: var(--teal); } .fm-code-tx .n { color: var(--terracotta); } .fm-code-tx .c { color: var(--muted); font-style: italic; }
+.fm-code-hl { position: absolute; left: 0; right: 0; background: rgba(104, 201, 186, 0.14); border-left: 6px solid var(--teal); display: none; z-index: 0; }
+
+/* terminal */
+.fm-term-body { padding: 30px 36px; font-family: var(--font-mono); font-size: 30px; line-height: 1.6; font-variant-ligatures: none; font-feature-settings: "calt" 0, "liga" 0; }
+.fm-term-prompt { color: var(--terracotta); font-weight: 700; }
+.fm-term-cmd { color: var(--cream); font-weight: 600; }
+.fm-term-caret { display: inline-block; width: 16px; height: 34px; margin-left: 2px; background: var(--amber); vertical-align: -6px; }
+.fm-term-out { color: var(--cream-3); white-space: pre; }
+.fm-term-out.ok { color: var(--teal); } .fm-term-out.dim { color: var(--muted); } .fm-term-out.hi { color: var(--amber); }
+
+/* lower third */
+.fm-l3 { position: absolute; display: flex; gap: 24px; align-items: stretch; z-index: 40; padding: 18px 30px 20px 22px; border-radius: 18px; background: rgba(16, 17, 20, 0.78); box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35); }
+.fm-l3-bar { width: 10px; background: var(--terracotta); border-radius: 6px; transform-origin: 50% 100%; }
+.fm-l3-name { font-family: var(--font-display); font-stretch: 68%; font-weight: 900; font-size: 84px; line-height: 0.95; color: var(--cream); text-transform: uppercase; letter-spacing: 0.01em; }
+.fm-l3-name .fm-word, .fm-l3-name .fm-letter { display: inline-block; }
+.fm-l3-role { margin-top: 10px; font-family: var(--font-body); font-weight: 600; font-size: 32px; color: var(--amber); }
+
+/* iteration compare */
+.fm-cmp { position: absolute; left: 0; top: 0; border-radius: 22px; overflow: hidden; background: var(--ink); box-shadow: 0 40px 90px rgba(0, 0, 0, 0.5); }
+.fm-cmp-a, .fm-cmp-b { position: absolute; inset: 0; }
+.fm-cmp-a > *, .fm-cmp-b > * { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.fm-cmp-div { position: absolute; top: 0; bottom: 0; left: -3px; width: 6px; background: var(--cream); box-shadow: 0 0 24px rgba(0, 0, 0, 0.6); }
+.fm-cmp-label { position: absolute; top: 24px; padding: 8px 18px; border-radius: 12px; font-family: var(--font-mono); font-size: 26px; font-weight: 600; }
+.fm-cmp-label.a { left: 24px; background: rgba(16, 17, 20, 0.82); color: var(--cream-2); }
+.fm-cmp-label.b { right: 24px; background: var(--teal); color: var(--ink); }
+.fm-cmp-note { position: absolute; left: 24px; right: 24px; bottom: 24px; padding: 14px 22px; border-radius: 14px; background: rgba(16, 17, 20, 0.86);
+  font-family: var(--font-mono); font-size: 27px; color: var(--cream); }
+
+/* end card */
+.fm-end { position: absolute; left: 0; right: 0; top: 0; bottom: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 40; text-align: center; }
+.fm-end-line { will-change: transform, opacity; }
+.fm-code-row.gap .fm-code-tx { color: var(--muted); }

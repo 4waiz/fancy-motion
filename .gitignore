@@ -1,0 +1,10 @@
+node_modules/
+.venv/
+__pycache__/
+.hyperframes/
+motion-examples/
+*.qa.wav
+*.video.mp4
+.DS_Store
+Thumbs.db
+desktop.ini

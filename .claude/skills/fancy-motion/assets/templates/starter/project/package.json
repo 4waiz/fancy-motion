@@ -1,0 +1,19 @@
+{
+  "name": "fancy-motion-film",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node __SKILL__/scripts/fm.mjs build .",
+    "check": "hyperframes check",
+    "preview": "hyperframes preview",
+    "render:draft": "node __SKILL__/scripts/fm.mjs render . --draft",
+    "render": "node __SKILL__/scripts/fm.mjs render ."
+  },
+  "devDependencies": {
+    "hyperframes": "0.8.166",
+    "three": "0.186.1",
+    "@fontsource-variable/archivo": "5.3.0",
+    "@fontsource-variable/dm-sans": "5.3.0",
+    "@fontsource-variable/jetbrains-mono": "5.3.0"
+  }
+}

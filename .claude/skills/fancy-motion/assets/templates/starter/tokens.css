@@ -1,0 +1,32 @@
+/* WONDER DESK / FANCY MOTION design tokens — canonical source.
+   Shared by the WONDER DESK app (wonder-desk/) and the film (film/). Copied into each by their
+   sync scripts; edit here, then re-sync. Created by Awaiz Ahmed. */
+:root {
+  --ink: #101114;
+  --ink-2: #17191e;
+  --ink-3: #20232a;
+  --line: #2c3038;
+  --cream: #f4ecdd;
+  --cream-2: #e9dec9;
+  --cream-3: #d8ccb4;
+  --terracotta: #da7557;
+  --terracotta-deep: #b95a3e;
+  --teal: #68c9ba;
+  --teal-deep: #3e9c8e;
+  --amber: #f3bd59;
+  --amber-deep: #d99a2b;
+  --crimson: #c8324a;
+  --muted: #9a958a;
+  --walnut: #6b4430;
+  --walnut-dark: #3e271b;
+
+  --font-display: "Archivo", sans-serif;
+  --font-body: "DM Sans", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --stretch-display: 68%;
+  --radius-s: 10px;
+  --radius-m: 16px;
+  --radius-l: 24px;
+  --shadow-card: 0 18px 40px rgba(0, 0, 0, 0.35), 0 2px 6px rgba(0, 0, 0, 0.25);
+}

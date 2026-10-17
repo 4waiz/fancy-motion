@@ -1,0 +1,4 @@
+/* starter film styles — tokens in vendor/tokens.css, components in fm/fm.css */
+.st-title { font-family: var(--font-display); font-stretch: 68%; font-weight: 900; font-size: 150px; line-height: 0.95; color: var(--cream); text-transform: uppercase;
+  text-shadow: 1px 2px 0 #b95a3e, 2px 4px 0 #b95a3e, 3px 6px 0 #b95a3e, 4px 8px 0 #7e3a28, 0 20px 36px rgba(0, 0, 0, 0.5); }
+.st-line { margin-top: 26px; font-family: var(--font-body); font-weight: 600; font-size: 46px; color: var(--amber); }
